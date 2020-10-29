@@ -1,0 +1,80 @@
+{
+	"folders": [
+		{
+			"name": "Test",
+			"path": "./apps/test",
+		},
+		{
+			"name": "LIBS - Shared",
+			"path": "./libs/shared",
+		},
+		{
+			"name": "e2e",
+			"path": "./apps",
+		},
+		{
+			"name": "Groundwork",
+			"path": "./",
+		},
+	],
+	"settings": {
+		"typescript.tsdk": "node_modules\\typescript\\lib",
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+
+			"node_modules": true,
+			/** Hide `apps` & `libs` in `Groundwork` */
+			"apps": true,
+			"libs": true,
+
+			/** Hide `apps` in `e2e` */
+			"test": true,
+		},
+		"files.watcherExclude": {
+			"**/.git/objects/**": true,
+			"**/.git/subtree-cache/**": true,
+			"**/.hg/store/**": true
+		},
+	},
+	"extensions": {
+		"recommendations": [
+			"nrwl.angular-console",
+			"angular.ng-template",
+			"ms-vscode.vscode-typescript-tslint-plugin",
+			"esbenp.prettier-vscode",
+		],
+	},
+	"launch": {
+		"configurations": [
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "Jest - current file",
+				"program": "${workspaceFolder:Groundwork}/node_modules/@angular/cli/bin/ng",
+				"cwd": "./",
+				"args": [
+					"test",
+					"`--testFile=${fileBasenameNoExtension:Groundwork}",
+					"--runInBand",
+				],
+				"console": "internalConsole",
+				"internalConsoleOptions": "neverOpen",
+				"disableOptimisticBPs": true,
+			},
+			{
+				"type": "node",
+				"request": "attach",
+				"name": "Attach",
+				"port": 52247,
+				"skipFiles": [
+					"<node_internals>/**"
+				]
+			},
+		],
+		"compounds": []
+	}
+}
